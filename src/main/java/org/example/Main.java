@@ -2,6 +2,8 @@ package org.example;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -142,5 +144,22 @@ public class Main {
             }
         }
         System.out.println(matrix[row][col]);
+    }
+
+    //155. Уникальные элементы
+    public static void uniqueElements() throws IOException {
+        Map<String, Integer> map = new HashMap<>();
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            reader.readLine();
+            String[] strNums = reader.readLine().split(" ");
+            for (String strNum : strNums) {
+                map.put(strNum, map.getOrDefault(strNum, 0) + 1);
+            }
+        }
+        System.out.println(map.values().stream()
+                .filter(value -> value == 1)
+                .count()
+        );
     }
 }
