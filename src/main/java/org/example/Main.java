@@ -118,4 +118,29 @@ public class Main {
             writer.write(matrix[n-1][m-1] + "\n" + path[n-1][m-1]);
         }
     }
+
+    //4. Ход конём
+    public static void numberOfKnightSteps() throws IOException {
+        int row, col;
+        int[][] matrix;
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            String line = reader.readLine();
+            String[] strNums = line.split(" ");
+
+            row = Integer.parseInt(strNums[0]);
+            col = Integer.parseInt(strNums[1]);
+        }
+        matrix = new int[row + 1][col + 1];
+        matrix[1][1] = 1;
+        matrix[0][1] = 0;
+        matrix[1][0] = 0;
+
+        for (int i = 2; i <= row; i++) {
+            for (int j = 2; j <= col; j++) {
+                matrix[i][j] = matrix[i - 2][j - 1] + matrix[i - 1][j - 2];
+            }
+        }
+        System.out.println(matrix[row][col]);
+    }
 }
